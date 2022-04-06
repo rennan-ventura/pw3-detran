@@ -40,11 +40,11 @@ public class Multa {
 	private String orgao;
 	
 	@ManyToOne
-	@JoinColumn(name = "idVeiculo")
+	@JoinColumn(name = "veiculo")
 	private Veiculo veiculo;
 	
 	@ManyToOne
-	@JoinColumn(name = "idPessoa")
+	@JoinColumn(name = "condutor")
 	private Pessoa condutor;
 
 }

@@ -33,7 +33,7 @@ public class Veiculo {
 	private int ano;
 	
 	@ManyToOne
-	@JoinColumn(name = "nome")
+	@JoinColumn(name = "proprietario")
 	private Pessoa proprietario;
 
 }
