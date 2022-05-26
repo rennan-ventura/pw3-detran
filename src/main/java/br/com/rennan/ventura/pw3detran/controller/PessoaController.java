@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rennan.ventura.pw3detran.entity.Pessoa;
@@ -29,14 +28,14 @@ public class PessoaController {
 	List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	@GetMapping
-	//@ResponseStatus(HttpStatus.OK)
+	//Uma variação para mudar o status de retorno seria: @ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<Pessoa>> getAll(){
 		pessoas = repository.findAll();
 		return ResponseEntity.ok(pessoas);
 	}
 	
 	@GetMapping("/{id}")
-	//@ResponseStatus(HttpStatus.OK)
+	//Uma variação para mudar o status de retorno seria: @ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Pessoa> getById(@PathVariable Integer id){
 		Optional<Pessoa> tipo = repository.findById(id);
 		if (tipo.isPresent()) {
@@ -47,15 +46,15 @@ public class PessoaController {
 	}
 		
 	@PostMapping	
-	//@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Pessoa> inserir (@RequestBody Pessoa pessoa) {
+	//Uma variação para mudar o status de retorno seria: @ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Pessoa> insert(@RequestBody Pessoa pessoa) {
 		repository.save(pessoa);
-		return ResponseEntity.status((HttpStatus.CREATED)).body(pessoa);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
 	}
 	
 	@PutMapping("/{id}")
-	//@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<Pessoa> atualizar(@PathVariable Integer id, @RequestBody Pessoa pessoa) {
+	//Uma variação para mudar o status de retorno seria: @ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<Pessoa> update(@PathVariable Integer id, @RequestBody Pessoa pessoa) {
 		
 		boolean existe = repository.existsById(id);
 		if(existe) {
@@ -66,8 +65,8 @@ public class PessoaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	//@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<Pessoa> deletar(@PathVariable Integer id) {
+	//Uma variação para mudar o status de retorno seria: @ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<Pessoa> delete(@PathVariable Integer id) {
 		repository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
